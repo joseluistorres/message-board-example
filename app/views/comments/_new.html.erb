@@ -1,0 +1,7 @@
+<div class="well">
+    <h4>Leave a Comment:</h4>
+    <%= form_for([ @post, Comment.new], remote: true) do |form| %>
+      <%= form.text_area :body, size: '100x5' %><br>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    <% end %>
+</div>
