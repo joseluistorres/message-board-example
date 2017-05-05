@@ -27,4 +27,21 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to render_template("show")
     end
   end
+
+  describe "User shouldn't be able to Create a new Post unless is logged in" do
+    it "not hitting the new action in posts controller" do
+      get :new
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    it "not hitting the create action in posts controller" do
+      post :create, { post: { title: "Circle of Life", body: "This is just a text" } }
+      expect(response).to redirect_to new_user_session_path
+    end
+
+    it "not hitting the update action in posts controller" do
+      put :update, id: 1, post: { title: "Circle of Life", body: "This is just a text" }
+      expect(response).to redirect_to new_user_session_path
+    end
+  end
 end

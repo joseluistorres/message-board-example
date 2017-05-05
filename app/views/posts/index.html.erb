@@ -19,6 +19,9 @@
                 <button class="btn btn-success">
                  <%=link_to 'Read More', post_path(post) %>
                 </button>
+                <% if post.comments.any? %>
+                    <span>Num Comments: <%= post.comments.length %></span>
+                <% end %>
             </div>
 
             <% end %>
